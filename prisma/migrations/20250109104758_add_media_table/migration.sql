@@ -1,0 +1,13 @@
+-- AlterTable
+ALTER TABLE `Post` ADD COLUMN `image` VARCHAR(191) NULL,
+    MODIFY `title` VARCHAR(500) NOT NULL,
+    MODIFY `slug` VARCHAR(500) NOT NULL;
+
+-- CreateTable
+CREATE TABLE `Media` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` ENUM('IMAGE', 'VIDEO') NOT NULL DEFAULT 'IMAGE',
+    `url` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

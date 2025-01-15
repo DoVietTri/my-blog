@@ -1,4 +1,4 @@
-import { MyLink } from "@/components/MyLink";
+import { MyLink } from "@/components/common/MyLink";
 import { NextPage } from "next";
 import React from "react";
 

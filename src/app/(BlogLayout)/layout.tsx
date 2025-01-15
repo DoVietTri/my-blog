@@ -1,4 +1,5 @@
-import { MyHeader } from "@/components/MyHeader";
+import { MyFooter } from "@/components/common/MyFooter";
+import { MyHeader } from "@/components/common/MyHeader";
 
 export default function BlogLayout({
   children,
@@ -9,6 +10,7 @@ export default function BlogLayout({
     <>
       <MyHeader />
       <main>{children}</main>
+      <MyFooter />
     </>
   );
 }

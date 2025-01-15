@@ -13,6 +13,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (token && pathname === "/admin/login")
+    return NextResponse.redirect(new URL("/admin", request.url));
+
   return NextResponse.next();
 }
 

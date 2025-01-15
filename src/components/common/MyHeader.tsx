@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import { MyLink } from "./MyLink";
 import { MyDrawer } from "./MyDrawer";
-import { menu } from "@/constants";
+import { MENU } from "@/constants";
+import { usePathname } from "next/navigation";
 
 export const MyHeader = () => {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -36,13 +38,17 @@ export const MyHeader = () => {
           </MyLink>
         </div>
         <ul className="list-none hidden lg:flex flex-row gap-4">
-          {menu.map((item) => (
+          {MENU.map((item) => (
             <li key={item.link} className="font-medium text-xl">
-              <MyLink href={item.link}>{item.title}</MyLink>
+              <MyLink
+                href={item.link}
+                isActive={pathname.startsWith(item.link)}
+              >
+                {item.title}
+              </MyLink>
             </li>
           ))}
         </ul>
-        <div className="h-12 w-12 rounded-full bg-slate-500" />
       </header>
       <MyDrawer open={open} setOpen={setOpen} />
     </>

@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     });
 
     if (!user) {
-      return Response.json({ error: "User not found!" }, { status: 400 });
+      return Response.json({ error: "User not found!" }, { status: 404 });
     }
 
     // Compare password
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       .setSubject(user.id.toString())
       .sign(secret);
 
-    return Response.json({ token: jwt });
+    return Response.json({ token: jwt }, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.name === "ValidationError") {

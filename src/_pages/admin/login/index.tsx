@@ -1,27 +1,24 @@
 "use client";
 
-import { ILogin } from "@/interfaces/auth";
+import { ILoginPayload } from "@/interfaces/auth";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signinSchema } from "@/utils/validationSchema";
 import clsx from "clsx";
+import { loginAction } from "@/actions/auth";
 
-interface LoginProps {
-  onSubmit: (values: ILogin) => void;
-}
-
-export const Login = ({ onSubmit }: LoginProps) => {
+export const Login = () => {
   const {
     control,
-    formState: { errors },
+    formState: { errors, isLoading },
     handleSubmit,
-  } = useForm<ILogin>({
+  } = useForm<ILoginPayload>({
     defaultValues: {
       email: "",
       password: "",
     },
-    // resolver: yupResolver(signinSchema),
+    resolver: yupResolver(signinSchema),
     mode: "all",
   });
 
@@ -35,7 +32,7 @@ export const Login = ({ onSubmit }: LoginProps) => {
           <h2 className="text-center text-lg">Hệ thống quản lý</h2>
         </div>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(loginAction)}
           className="mt-9 flex flex-col gap-4"
         >
           <Controller
@@ -125,7 +122,12 @@ export const Login = ({ onSubmit }: LoginProps) => {
             )}
           />
 
-          <button tabIndex={3} className="btn" type="submit">
+          <button
+            disabled={isLoading}
+            tabIndex={3}
+            className="btn"
+            type="submit"
+          >
             Đăng nhập
           </button>
         </form>

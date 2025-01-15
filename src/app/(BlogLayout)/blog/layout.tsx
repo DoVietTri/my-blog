@@ -1,4 +1,4 @@
-import { MyAside } from "@/components/MyAside";
+import { MyAside } from "@/components/common/MyAside";
 import React from "react";
 
 const BlogLayout = ({

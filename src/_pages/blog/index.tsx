@@ -1,24 +1,17 @@
-import MyCardPost from "@/components/MyCardPost";
+import MyCardPost from "@/components/common/MyCardPost";
+import { IGetPostsDataResponse } from "@/interfaces/post";
 import React from "react";
 
-export const Blogs = () => {
+interface BlogsProps {
+  postsData: IGetPostsDataResponse;
+}
+
+export const Blogs = ({ postsData }: BlogsProps) => {
   return (
     <div>
-      <MyCardPost
-        title="Quyền lợi khi trở thành Fan Cứng"
-        author="Taylor Do"
-        slug="quyen-loi-khi-tro-thanh-fan-cung"
-      />
-      <MyCardPost
-        title="Quyền lợi khi trở thành Fan Cứng"
-        author="Taylor Do"
-        slug="quyen-loi-khi-tro-thanh-fan-cung"
-      />
-      <MyCardPost
-        title="Quyền lợi khi trở thành Fan Cứng"
-        author="Taylor Do"
-        slug="quyen-loi-khi-tro-thanh-fan-cung"
-      />
+      {postsData?.posts?.map((post) => (
+        <MyCardPost post={post} key={post.id} />
+      ))}
     </div>
   );
 };

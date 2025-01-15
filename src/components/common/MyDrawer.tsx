@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { MyLink } from "./MyLink";
-import { menu } from "@/constants";
+import { MENU } from "@/constants";
 
 interface MyDrawerProps {
   open: boolean;
@@ -67,7 +67,7 @@ export const MyDrawer = ({ open, setOpen }: MyDrawerProps) => {
                 </div>
                 <div className="p-4">
                   <ul className="list-none flex flex-col gap-4">
-                    {menu.map((item) => (
+                    {MENU.map((item) => (
                       <li className="font-medium text-xl" key={item.link}>
                         <MyLink
                           className="flex flex-row items-center gap-2"

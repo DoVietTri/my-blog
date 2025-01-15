@@ -31,10 +31,23 @@ model User {
 
 model Post {
   id          Int @id @default(autoincrement())
-  title       String
-  slug        String
+  title       String    @db.VarChar(500)
+  slug        String     @db.VarChar(500)
+  image       String?
   content     String?   @db.LongText
   userId      Int // foreign key
   author      User @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+
+model Media {
+  id          Int @id @default(autoincrement())
+  url         String
+  type        String?
+  folder      String?
+  format      String?
+  width       Int?
+  height      Int?
   createdAt   DateTime @default(now())
 }
