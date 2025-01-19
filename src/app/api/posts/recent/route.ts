@@ -29,7 +29,7 @@ export async function GET(req: Request) {
       },
     });
 
-    return Response.json({ data: data }, { status: 200 });
+    return Response.json(data, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.name === "ValidationError") {

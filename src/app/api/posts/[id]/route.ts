@@ -9,9 +9,7 @@ export async function GET(
   try {
     const { id } = await params;
 
-    console.log("id", id);
-
-    const post = await prisma.post.findFirst({
+    const data = await prisma.post.findFirst({
       select: {
         id: true,
         title: true,
@@ -35,7 +33,7 @@ export async function GET(
       },
     });
 
-    return Response.json({ data: post }, { status: 200 });
+    return Response.json(data, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.name === "ValidationError") {
@@ -64,7 +62,7 @@ export async function PUT(
       return Response.json({ error: "Not found!" }, { status: 404 });
     }
 
-    const updatePost = await prisma.post.update({
+    const data = await prisma.post.update({
       where: {
         id: Number(id),
       },
@@ -74,7 +72,7 @@ export async function PUT(
       },
     });
 
-    return Response.json({ data: updatePost }, { status: 200 });
+    return Response.json(data, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.name === "ValidationError") {

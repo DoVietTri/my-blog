@@ -10,9 +10,10 @@ import { MyPagination } from "@/components/common/MyPagination";
 
 interface PostProps {
   postsData: IGetPostsDataResponse;
+  refetch: () => Promise<void>;
 }
 
-export const Post = ({ postsData }: PostProps) => {
+export const Post = ({ postsData, refetch }: PostProps) => {
   const [dataEdit, setDataEdit] = useState<IPostData | null>();
 
   const handleShowDialog = () => {
@@ -132,6 +133,7 @@ export const Post = ({ postsData }: PostProps) => {
         dialogId={DIALOG_ID.CREATE_OR_EDIT_POST}
         defaultValues={dataEdit}
         onClose={handleHideDialog}
+        refetch={refetch}
       />
     </>
   );

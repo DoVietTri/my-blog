@@ -1,18 +1,13 @@
 import { UploadFolderEnum } from "@/constants";
-import prisma from "@/db/prisma";
 import { upload } from "@/utils/cloudinary";
+import prisma from "@/db/prisma";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const config = { runtime: "experimental-edge" };
 
 export async function POST(req: Request) {
-  console.log("req", req);
   try {
     const formData = await req.formData();
-    console.log("formData", formData);
+
     const file = formData.get("file") as File;
 
     if (!file) {
@@ -32,10 +27,9 @@ export async function POST(req: Request) {
       },
     });
 
-    return Response.json({ data: data }, { status: 200 });
+    return Response.json(data, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    console.log("error", error);
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }

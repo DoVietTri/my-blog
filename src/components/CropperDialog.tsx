@@ -40,7 +40,6 @@ export const CropperDialog = ({
       dialogId={dialogId}
       onClose={onClose}
       onSubmit={() => handleCrop(imgPreview, croppedAreaPixels)}
-      showBtnCancel={false}
       confirmBtnText="Cắt"
     >
       <div className="h-96 relative">

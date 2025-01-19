@@ -1,6 +1,6 @@
 "use client";
 
-import { createPostAction } from "@/actions/post";
+import { createPostAction, updatePostAction } from "@/actions/post";
 import { IPostData, IPostPayload } from "@/interfaces/post";
 import { createPostSchema } from "@/utils/validationSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,12 +14,14 @@ interface CreateOrEditPostDialogProps {
   dialogId: string;
   defaultValues?: IPostData | null;
   onClose: () => void;
+  refetch: () => Promise<void>;
 }
 
 export const CreateOrEditPostDialog = ({
   dialogId,
   defaultValues,
   onClose,
+  refetch,
 }: CreateOrEditPostDialogProps) => {
   const {
     control,
@@ -37,13 +39,17 @@ export const CreateOrEditPostDialog = ({
   });
 
   const onSubmit = async (values: IPostPayload) => {
-    console.log("values", values);
-    // try {
-    //   await createPostAction(values);
-    //   onClose();
-    // } catch (error) {
-    //   console.log("error", error);
-    // }
+    try {
+      if (defaultValues) {
+        await updatePostAction(defaultValues.id, values);
+      } else {
+        await createPostAction(values);
+      }
+      refetch();
+      onClose();
+    } catch (error) {
+      console.log("error", error);
+    }
   };
 
   useEffect(() => {

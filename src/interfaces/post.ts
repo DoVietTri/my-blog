@@ -2,7 +2,7 @@ import { IPaginationData } from "./pagination";
 
 // -------------Payload-----------------------
 export interface IPostPayload {
-  image: string;
+  image?: string;
   title: string;
   content: string;
 }
@@ -39,10 +39,6 @@ export interface IPostData {
 
 export interface IGetRecentPostDataResponse {
   data: IPostData[];
-}
-
-export interface IGetPostBySlugDataResponse {
-  data: IPostData;
 }
 
 export interface IGetPostsDataResponse extends IPaginationData {

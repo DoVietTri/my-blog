@@ -13,7 +13,6 @@ export const signinSchema = yup.object().shape({
 });
 
 export const createPostSchema = yup.object().shape({
-  image: yup.string().required("Image is required"),
   title: yup
     .string()
     .max(255, "Max 255 characters")
@@ -27,5 +26,5 @@ export const updatePostSchema = yup.object().shape({
 });
 
 export const uploadFileSchema = yup.object().shape({
-  url: yup.string().required("URL is required"),
+  file: yup.string().required("URL is required"),
 });

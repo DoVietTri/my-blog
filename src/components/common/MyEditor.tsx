@@ -44,7 +44,11 @@ export const MyEditor = ({ value, onChange }: MyEditorProps) => {
       Paragraph,
       Text,
       Dropcursor,
-      Image,
+      Image.configure({
+        HTMLAttributes: {
+          class: "custom-tiptap-image",
+        },
+      }),
       Table,
       TableCell,
       TableHeader,

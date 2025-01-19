@@ -27,12 +27,10 @@ export async function GET(req: Request) {
 
     return Response.json(
       {
-        data: {
-          posts: medias,
-          currentPage: page,
-          totalCount: totalCount,
-          totalPage: Math.ceil(totalCount / size),
-        },
+        medias: medias,
+        currentPage: page,
+        totalCount: totalCount,
+        totalPage: Math.ceil(totalCount / size),
       },
       { status: 200 }
     );
