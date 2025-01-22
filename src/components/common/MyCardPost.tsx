@@ -12,8 +12,10 @@ const MyCardPost = ({ post }: MyCardPostProps) => {
   return (
     <div className="flex flex-col gap-2 p-4 w-full lg:w-[600px] transition">
       <div className="flex gap-4 items-center">
-        <div>
-          <div className="h-12 w-12 rounded-full bg-slate-500" />
+        <div className="avatar">
+          <div className="w-10 rounded-xl">
+            <Image src={post.author.avatar} width={40} height={40} alt="" />
+          </div>
         </div>
         <div>
           <MyLink href={`/blog/${post.slug}`} className="hover:underline">

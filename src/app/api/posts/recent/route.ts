@@ -35,6 +35,6 @@ export async function GET(req: Request) {
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }

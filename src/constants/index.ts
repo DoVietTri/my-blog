@@ -3,7 +3,8 @@ import PostIcon from "@/assets/icons/document.svg";
 import UploadIcon from "@/assets/icons/upload.svg";
 
 export const MENU = [
-  { title: "Blog", link: "/blog" },
+  { title: "Blogs", link: "/blog" },
+  { title: "Docs", link: "/doc" },
   { title: "About me", link: "/about-me" },
 ];
 

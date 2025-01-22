@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const file = formData.get("file") as File;
 
     if (!file) {
-      return Response.json({ error: "File not found!" }, { status: 400 });
+      return Response.json({ message: "File not found!" }, { status: 400 });
     }
 
     const result = await upload(file, UploadFolderEnum.POST);
@@ -33,6 +33,6 @@ export async function POST(req: Request) {
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }

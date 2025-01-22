@@ -18,14 +18,14 @@ export async function POST(req: Request) {
     });
 
     if (!user) {
-      return Response.json({ error: "User not found!" }, { status: 404 });
+      return Response.json({ message: "User not found!" }, { status: 404 });
     }
 
     // Compare password
     const isCorrectPassword = bcrypt.compareSync(password, user.password);
 
     if (!isCorrectPassword) {
-      return Response.json({ error: "Incorrect password!" }, { status: 400 });
+      return Response.json({ message: "Incorrect password!" }, { status: 400 });
     }
 
     // Create JWT
@@ -42,6 +42,6 @@ export async function POST(req: Request) {
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }

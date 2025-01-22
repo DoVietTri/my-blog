@@ -5,6 +5,7 @@ interface MyLinkProps extends LinkProps {
   className?: string;
   isActive?: boolean;
   children: React.ReactNode;
+  target?: string;
 }
 
 export const MyLink = ({

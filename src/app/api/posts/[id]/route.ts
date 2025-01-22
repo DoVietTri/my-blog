@@ -39,7 +39,7 @@ export async function GET(
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }
 
@@ -59,7 +59,7 @@ export async function PUT(
     });
 
     if (!res) {
-      return Response.json({ error: "Not found!" }, { status: 404 });
+      return Response.json({ message: "Not found!" }, { status: 404 });
     }
 
     const data = await prisma.post.update({
@@ -78,6 +78,6 @@ export async function PUT(
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }

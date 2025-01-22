@@ -16,20 +16,17 @@ export async function POST(req: Request) {
       userId: 3, // TODO
     };
 
-    const post = await prisma.post.create({
+    const data = await prisma.post.create({
       data: payload,
     });
 
-    return Response.json(
-      { message: "Successfully!", data: post },
-      { status: 200 }
-    );
+    return Response.json(data, { status: 200 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }
 
@@ -92,6 +89,6 @@ export async function GET(req: Request) {
     if (error.name === "ValidationError") {
       return Response.json({ [error.path]: error.message }, { status: 400 });
     }
-    return Response.json({ error: "Something went wrong!" }, { status: 500 });
+    return Response.json({ message: "Something went wrong!" }, { status: 500 });
   }
 }

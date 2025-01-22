@@ -1,20 +1,32 @@
 import prisma from "@/db/prisma";
 
-export async function GET(req: Request) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
+    const { id } = await params;
     const { searchParams } = new URL(req.url);
     const page = Number(searchParams.get("page") || 1);
     const size = Number(searchParams.get("size") || 10);
+    const query = searchParams.get("q") || "";
 
-    const medias = await prisma.media.findMany({
-      select: {
-        id: true,
-        url: true,
-        type: true,
-        format: true,
-        width: true,
-        height: true,
-        createdAt: true,
+    const post = await prisma.comment.findUnique({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (!post) {
+      return Response.json({ message: "Post not found!" }, { status: 404 });
+    }
+
+    const comments = await prisma.comment.findMany({
+      where: {
+        postId: Number(id),
+        content: {
+          contains: query,
+        },
       },
       skip: (page - 1) * size,
       take: size,
@@ -23,11 +35,18 @@ export async function GET(req: Request) {
       },
     });
 
-    const totalCount = await prisma.media.count({});
+    const totalCount = await prisma.comment.count({
+      where: {
+        postId: Number(id),
+        content: {
+          contains: query,
+        },
+      },
+    });
 
     return Response.json(
       {
-        medias: medias,
+        comments: comments,
         currentPage: page,
         totalCount: totalCount,
         totalPage: Math.ceil(totalCount / size),

@@ -28,7 +28,7 @@ export const Home = () => {
             <h3 className="font-bold text-2xl">Tài liệu kĩ thuật</h3>
             <p>
               Nơi chia sẻ các bài hướng dẫn về kĩ thuật được sử dụng nhiều trong
-              dự án thực tế sẽ được mình tổng hợp tại đây
+              dự án thực tế sẽ được mình tổng hợp tại đây 🧑‍🏫
             </p>
           </div>
         </div>
@@ -49,11 +49,11 @@ export const Home = () => {
             <Image src={ReactImg} width={200} height={200} alt="" />
           </div>
           <div className="flex flex-col gap-4">
-            <h3 className="font-bold text-2xl">Khoá học Frontend</h3>
+            <h3 className="font-bold text-2xl">Quiz Game</h3>
             <p>
-              Sắp tới sẽ có những khoá học do mình biên soạn và thiết kế nhằm
-              giúp các bạn nắm vững kiến thức nền tảng của Frontend để có thể
-              làm việc tốt hơn 😍
+              Mình dự định sẽ tạo ra các bộ câu hỏi, các kiến thức liên quan đến
+              Frontend để mọi người vừa học vừa ôn lại kiến thức. Rất mong được
+              sự đón nhận từ mọi người 😍
             </p>
           </div>
         </div>

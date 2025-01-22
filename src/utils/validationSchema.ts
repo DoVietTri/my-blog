@@ -28,3 +28,11 @@ export const updatePostSchema = yup.object().shape({
 export const uploadFileSchema = yup.object().shape({
   file: yup.string().required("URL is required"),
 });
+
+export const createCommentSchema = yup.object().shape({
+  content: yup
+    .string()
+    .required("Content is required")
+    .max(500, "Content must be less than 500 character"),
+  postId: yup.number().required("PostId is required"),
+});
